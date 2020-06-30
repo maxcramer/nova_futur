@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
+
+import './Header.css';
 // import { render } from '@testing-library/react';
 
 function Header() {
@@ -18,16 +20,13 @@ function Header() {
  useEffect(() => {
    loadData();
  }, []);
-
+const now = new Date();
+const time = `${now.getHours()}:${now.getMinutes()}`;
 
     return (
-        <div>
-        <h2>header</h2>
-            {
-                headerItems.map(h => (
-                    <p>{h.coord.name}</p>
-                ))
-            }
+        <div className="header__container">
+            <h2>LONDON</h2>
+            <p>{time}</p>
         </div>
     )
 }
