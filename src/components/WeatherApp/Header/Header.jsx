@@ -27,22 +27,27 @@ function AppHeader() {
   }, []);
 
   return (
-      <div className="header__container">
-    <div className="header__top__half">
-      <h2>London</h2>
-      <p className="time">{currentTime}</p>
-      <h2>{currentTemp}°C</h2>
-    </div>
-    <div className="timer__container">
+    <div className="header__container">
+      <div className="header__top__half">
+        <h2>London</h2>
+        <div className="clock__container">
+          <div className="yellow__ball"></div>
+          <div className="yellow__ball"></div>
+          <div className="yellow__ball__highlight"></div>
+          <p className="time">{currentTime}GMT</p>
+          <div className="yellow__ball"></div>
+          <div className="yellow__ball"></div>
+          <div className="yellow__ball__highlight"></div>
+        </div>
+        <h2>{currentTemp}°C</h2>
+      </div>
+      <div className="timer__container">
         <p className="timer__title">Reloading in 10 seconds</p>
         <div className="timer__bar__container">
-            <div className="yellow__timer">
-
-            </div>
+          <div className="yellow__timer"></div>
         </div>
-    </div>
-
       </div>
+    </div>
   );
 }
 

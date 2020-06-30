@@ -17,7 +17,7 @@ h2 {
 }
 
 .time {
-    margin-left: -50px;
+    font-size: 10px;
 }
 
 .timer__title {
@@ -39,4 +39,28 @@ h2 {
     height: 14px;
     background-color: #F49C06;
     border-radius: 15px;
+}
+
+.clock__container {
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+
+.yellow__ball {
+    height: 5px;
+    width: 2px;
+    background-color: #99712E;
+    border-radius: 100%;
+}
+
+.yellow__ball__highlight {
+    height: 5px;
+    width: 2px;
+    background-color: #DA9720;
+    border-radius: 100%;
 }
