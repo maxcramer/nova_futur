@@ -28,15 +28,13 @@ function Body() {
   weekday[5] = 'Friday';
   weekday[6] = 'Saturday';
 
-
-
   return (
     <div>
       <h2>Body Component</h2>
       {weatherItems.map(f => (
         <div key={f.dt}>
-            <p>{weekday[new Date(f.dt_txt).getDay()]}</p>
-
+          <p>{weekday[new Date(f.dt_txt).getDay()]}</p>
+          <p>{ Math.round(f.main.temp - 273.15) }℃</p>
         </div>
       ))}
     </div>
