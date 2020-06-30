@@ -9,8 +9,8 @@ class Body extends React.Component {
   async componentDidMount() {
     const url = 'http://api.openweathermap.org/data/2.5/forecast?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
     const response = await fetch(url);
-    const data = response.json(response);
-    console.log("this is the data", data);
+    const data = await response.json(response)
+    console.log('this is the data', data.city);
   }
 
   render() {
