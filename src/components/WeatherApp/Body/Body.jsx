@@ -19,13 +19,23 @@ function Body() {
     loadData();
   }, []);
 
+  var weekday = new Array(7);
+  weekday[0] = 'Sunday';
+  weekday[1] = 'Monday';
+  weekday[2] = 'Tuesday';
+  weekday[3] = 'Wednesday';
+  weekday[4] = 'Thursday';
+  weekday[5] = 'Friday';
+  weekday[6] = 'Saturday';
+
+
 
   return (
     <div>
       <h2>Body Component</h2>
       {weatherItems.map(f => (
         <div key={f.dt}>
-            {/* <p>{f.main}</p> */}
+            <p>{weekday[new Date(f.dt_txt).getDay()]}</p>
 
         </div>
       ))}
