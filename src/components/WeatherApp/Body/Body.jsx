@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
 
-class Body extends React.Component {
-  state = {
-    loading: true
-  };
+function Body() {
+  const [weatherItems, setWeatherItems] = useState([]);
 
-  
-  async componentDidMount() {
-      const url = 'http://api.openweathermap.org/data/2.5/forecast?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
-      const response = await fetch(url);
-      const data = await response.json(response)
-      const arraryOfWeatherValues = data.list.map(item => item.weather);
-    const firstFiveItems = [...arraryOfWeatherValues].slice(0, 5);
-      console.log(firstFiveItems);
+  async function loadData() {
+    const url =
+      'http://api.openweathermap.org/data/2.5/forecast?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
+    const response = await fetch(url);
+    const data = await response.json(response);
+    const arraryOfWeatherValues = data.list
+      .slice(0, 5)
+      .map(item => item.weather[0]);
+    setWeatherItems(arraryOfWeatherValues);
+    console.log(arraryOfWeatherValues)
   }
 
+  useEffect(() => {
+    loadData();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <h2>body</h2>
-      </div>
-    );
-  }
+
+  return (
+    <div>
+      <h2>firstFiveItems</h2>
+      {weatherItems.map(f => (
+        <div>
+            <p>{f.main}</p>
+
+        </div>
+      ))}
+    </div>
+  );
 }
 
-export default Body;
+export default withRouter(Body);
