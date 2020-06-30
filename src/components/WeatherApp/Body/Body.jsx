@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
+import './Body.css';
+
 function Body() {
   const [weatherItems, setWeatherItems] = useState([]);
 
@@ -29,16 +31,19 @@ function Body() {
   weekday[6] = 'Saturday';
 
   return (
-    <div>
-      <h2>Body Component</h2>
+    <div className="body__container">
+        <div className="body__inner__container"> 
       {weatherItems.map(f => (
-        <div key={f.dt}>
-          <p>{weekday[new Date(f.dt_txt).getDay()]}</p>
-          <p>{Math.round(f.main.temp - 273.15)}℃</p>
-          <img src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`} alt="" />
-          <p>{f.weather[0].description}</p>
-        </div>
+        <div className="single__day__info" key={f.dt}>
+             <p className="day">{weekday[new Date(f.dt_txt).getDay()]}</p>
+             <p className="temp">{Math.round(f.main.temp - 273.15)}℃</p>
+                <div className="icon__desc">
+                    <img className="icon" src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`} alt="" />
+                    <p className="weather__desc">{f.weather[0].description}</p>
+                </div>
+            </div>
       ))}
+      </div>
     </div>
   );
 }
