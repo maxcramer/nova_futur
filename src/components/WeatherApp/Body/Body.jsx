@@ -35,7 +35,7 @@ function Body() {
         <div className="body__inner__container"> 
       {weatherItems.map(f => (
         <div className="single__day__info" key={f.dt}>
-             <p className="day">{weekday[new Date(f.dt_txt).getDay()]}</p>
+             <p className="day">{weekday[new Date(f.dt_txt).getDay()].slice(0, 3)}</p>
              <p className="temp">{Math.round(f.main.temp - 273.15)}℃</p>
                 <div className="icon__desc">
                     <img className="icon" src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`} alt="" />
