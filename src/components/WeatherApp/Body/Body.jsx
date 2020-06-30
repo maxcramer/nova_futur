@@ -11,7 +11,6 @@ function Body() {
     const data = await response.json(response);
     const arraryOfWeatherValues = data.list
       .slice(0, 5)
-      .map(item => item.weather[0]);
     setWeatherItems(arraryOfWeatherValues);
     console.log(arraryOfWeatherValues)
   }
@@ -23,10 +22,10 @@ function Body() {
 
   return (
     <div>
-      <h2>firstFiveItems</h2>
+      <h2>Body Component</h2>
       {weatherItems.map(f => (
-        <div>
-            <p>{f.main}</p>
+        <div key={f.dt}>
+            {/* <p>{f.main}</p> */}
 
         </div>
       ))}
