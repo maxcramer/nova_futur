@@ -11,10 +11,14 @@ function Body() {
       'http://api.openweathermap.org/data/2.5/forecast?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
     const response = await fetch(url);
     const data = await response.json(response);
+
     const arraryOfWeatherValues = data.list
-      .slice(0, 5)
+      .filter(item => {
+        return item.dt_txt.endsWith('12:00:00');
+      })
+      .slice(0, 5);
+
     setWeatherItems(arraryOfWeatherValues);
-    console.log(arraryOfWeatherValues)
   }
 
   useEffect(() => {
@@ -32,17 +36,23 @@ function Body() {
 
   return (
     <div className="body__container">
-        <div className="body__inner__container"> 
-      {weatherItems.map(f => (
-        <div className="single__day__info" key={f.dt}>
-             <p className="day">{weekday[new Date(f.dt_txt).getDay()].slice(0, 3)}</p>
-             <p className="temp">{Math.round(f.main.temp - 273.15)}℃</p>
-                <div className="icon__desc">
-                    <img className="icon" src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`} alt="" />
-                    <p className="weather__desc">{f.weather[0].description}</p>
-                </div>
+      <div className="body__inner__container">
+        {weatherItems.map(f => (
+          <div className="single__day__info" key={f.dt}>
+            <p className="day">
+              {weekday[new Date(f.dt_txt).getDay()].slice(0, 3)}
+            </p>
+            <p className="temp">{Math.round(f.main.temp - 273.15)}℃</p>
+            <div className="icon__desc">
+              <img
+                className="icon"
+                src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`}
+                alt=""
+              />
+              <p className="weather__desc">{f.weather[0].description}</p>
             </div>
-      ))}
+          </div>
+        ))}
       </div>
     </div>
   );

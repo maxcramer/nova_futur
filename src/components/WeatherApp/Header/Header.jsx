@@ -11,7 +11,7 @@ function Header() {
         const data = await response.json(response);
         const headerData = data;
         setHeaderItems(headerData);
-        console.log(data);
+        console.log(data.coords);
         // console.log("this is the city data", data.name);
     }
 
@@ -25,7 +25,7 @@ function Header() {
         <h2>header</h2>
             {
                 headerItems.map(h => (
-                    <p>{h.name}</p>
+                    <p>{h.coord.name}</p>
                 ))
             }
         </div>
