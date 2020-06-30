@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
 
 import './Header.css';
-// import { render } from '@testing-library/react';
 
-function Header() {
-    const [headerItems, setHeaderItems] = useState([]);
-    
-    async function loadData() {
-        const url = 'api.openweathermap.org/data/2.5/weather?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
-        const response = await fetch(url);
-        const data = await response.json(response);
-        const headerData = data;
-        setHeaderItems(headerData);
-        console.log(data.coords);
-        // console.log("this is the city data", data.name);
-    }
-
- useEffect(() => {
-   loadData();
- }, []);
-const now = new Date();
-const time = `${now.getHours()}:${now.getMinutes()}`;
-
-    return (
-        <div className="header__container">
-            <h2>LONDON</h2>
-            <p>{time}</p>
-        </div>
-    )
+function getTime() {
+  const now = new Date();
+  return `${now.getHours()}:${now.getMinutes()}`;
 }
 
-export default withRouter(Header);
+function AppHeader() {
+  const [currentTemp, setCurrentTemp] = useState([]);
+  const [currentTime, setCurrentTime] = useState();
+
+  async function loadData() {
+    setCurrentTime(getTime());
+    const url =
+      'https://api.openweathermap.org/data/2.5/weather?q=london&appid=ac9d46375bac97fb9ce96c7ffdb4851d';
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log('data: ', data);
+    const temp = Math.round(data.main.temp - 273.15);
+    setCurrentTemp(temp);
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  return (
+      <div className="header__container">
+    <div className="header__top__half">
+      <h2>London</h2>
+      <p className="time">{currentTime}</p>
+      <h2>{currentTemp}°C</h2>
+    </div>
+    <div className="timer__container">
+        <p className="timer__title">Reloading in 10 seconds</p>
+        <div className="timer__bar__container">
+            <div className="yellow__timer">
+
+            </div>
+        </div>
+    </div>
+
+      </div>
+  );
+}
+
+export default AppHeader;
