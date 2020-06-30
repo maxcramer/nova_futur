@@ -34,7 +34,9 @@ function Body() {
       {weatherItems.map(f => (
         <div key={f.dt}>
           <p>{weekday[new Date(f.dt_txt).getDay()]}</p>
-          <p>{ Math.round(f.main.temp - 273.15) }℃</p>
+          <p>{Math.round(f.main.temp - 273.15)}℃</p>
+          {console.log("this is the weather icon", f.weather[0].icon)}
+          <img src={`http://openweathermap.org/img/wn/${f.weather[0].icon}.png`} alt="" />
         </div>
       ))}
     </div>
