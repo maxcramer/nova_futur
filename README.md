@@ -1,6 +1,9 @@
 # Code Test for Nova Futur
 ## Time Spent: 8 Hours
-
+## What I would do next with more time avaliable. 
+- Write a setTimeout function to update the time displayed on the clock every minute. 
+- Write another setTimeout function that would force a reload on the page at the end of the countdown.
+- Animation on count down timer bar. I would do this by changing the width percentage(%) of the div with the className "yellow__bar" by 10% every second to look like it is loading another action.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
