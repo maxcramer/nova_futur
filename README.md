@@ -1,3 +1,8 @@
+# Code Test for Nova Futur
+## Time Spent: 8 Hours
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
